@@ -1,0 +1,5 @@
+let name:string = "Lucia";
+let version:int = 1;
+var active:bool = true;
+
+print("Hello, world");
