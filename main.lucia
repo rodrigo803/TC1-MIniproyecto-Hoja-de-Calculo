@@ -1,5 +1,9 @@
-let name:string = "Lucia";
-let version:int = 1;
-var active:bool = true;
+switch (day) {
+    case 1: print("Mon");
+    case 2: print("Tue");
+    default: print("Other");
+}
 
-print("Hello, world");
+for (let i: int = 0; i < 3; i++) { print(i); }
+while (ready) { break; }
+do { continue; } while (false);
