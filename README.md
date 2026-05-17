@@ -11,7 +11,7 @@ Cómo ejecutar:
 Funcionalidades implementadas:
 
 
-Imagen con el diagrama de clases:
+DIAGRAMA DE CLASES:
 <img width="1254" height="342" alt="image" src="https://github.com/user-attachments/assets/17b7ed4a-3360-4609-aaa9-5161408fe1e2" />
 
 
