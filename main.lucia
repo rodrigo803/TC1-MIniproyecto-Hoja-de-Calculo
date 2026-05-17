@@ -1,9 +1,46 @@
-switch (day) {
-    case 1: print("Mon");
-    case 2: print("Tue");
-    default: print("Other");
+func mostrarMenu(): void {
+    print("--- MENÚ HOJA DE CÁLCULO ---");
+    print("1. Asignar valor a una celda");
+    print("2. Ver la matriz de fórmulas");
+    print("3. Ver la matriz normal");
+    print("4. Salir");
 }
 
-for (let i: int = 0; i < 3; i++) { print(i); }
-while (ready) { break; }
-do { continue; } while (false);
+func ejecutarSistema(): void {
+    let matrizFormulas = [];
+    let matrizNormal = [];
+    
+    let i = 0;
+    while (i < 100) {
+        // Usamos el método nativo de Python que hereda el lenguaje
+        matrizFormulas.append(" ");
+        matrizNormal.append("0");
+        i = i + 1;
+    }
+    
+    print("Matriz 10x10 lista en memoria.");
+    
+    let ejecutable = true;
+    let opcion = ""; 
+
+    while (ejecutable) {
+        mostrarMenu();
+        
+        opcion = input("Elige una opción: "); 
+        
+        if (opcion == "1") {
+            print("Entrando al modo de asignación de celdas...");
+        } else if (opcion == "4") {
+            print("Cerrando la hoja de cálculo...");
+            ejecutable = false; 
+        } else {
+            print("Opción no válida.");
+        }
+    }
+}
+
+func main(): void {
+    ejecutarSistema();
+}
+
+main();
