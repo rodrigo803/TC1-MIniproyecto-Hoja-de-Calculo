@@ -8,17 +8,17 @@
   - Paso A: Clonar el repositorio
       Primero, descargará el código a su máquina local.
       - Bash
-        - git clone https://github.com/rodrigo803/TC1-MIniproyecto-Hoja-de-Calculo.git
+        git clone https://github.com/rodrigo803/TC1-MIniproyecto-Hoja-de-Calculo.git
 
   - Paso B: Entrar a la carpeta del proyecto
       Debe navegar hacia la raíz del proyecto, donde se encuentran el README.md y el main.lucia.
       - Bash
-        - cd tu-repositorio-hoja-calculo
+        cd tu-repositorio-hoja-calculo
 
   - Paso C: Compilar y Ejecutar
       Como tu punto de entrada está en la raíz, solo necesita indicarle al compilador (o al CLI) de Lucia que ejecute ese archivo. El compilador se encargará automáticamente de buscar los archivos referenciados en la            carpeta src/ gracias a las importaciones.
       - Bash
-       - lucia run main.lucia
+        lucia run main.lucia
 
 
 - FUNCIONALIDADES IMPLEMENTADAS:
