@@ -1,8 +1,8 @@
 # TC1-MIniproyecto-Hoja-de-Calculo
 
 - INTEGRANTES:
-  -Rodrigo Rene Elias Ramirez
-  -Sergio Alejandro Monge Moya
+  - Rodrigo Rene Elias Ramirez
+  - Sergio Alejandro Monge Moya
   
 - COMO EJECUTAR:
   - Paso A: Clonar el repositorio
@@ -21,16 +21,16 @@
       lucia run main.lucia
 
 
-FUNCIONALIDADES IMPLEMENTADAS:
+- FUNCIONALIDADES IMPLEMENTADAS:
+  - aqui van las fucionalidades implemetadas en el proyecto.
+
+- DIAGRAMA DE CLASES:
+    <img width="587" height="537" alt="image" src="https://github.com/user-attachments/assets/afc3b6aa-32f6-42a1-a8d2-d8666ad24996" />
 
 
-DIAGRAMA DE CLASES:
-<img width="587" height="537" alt="image" src="https://github.com/user-attachments/assets/afc3b6aa-32f6-42a1-a8d2-d8666ad24996" />
+
+- DIAGRAMA DE CASOS DE USO:
+    <img width="448" height="464" alt="image" src="https://github.com/user-attachments/assets/6dab7b8a-b69b-4cd7-acbe-21791c0fd84a" />
 
 
-
-DIAGRAMA DE CASOS DE USO:
-      <img width="448" height="464" alt="image" src="https://github.com/user-attachments/assets/6dab7b8a-b69b-4cd7-acbe-21791c0fd84a" />
-
-
-¿QUE MEJORAS SE HARIAN EN UNA VERSION 2.0?
+- ¿QUE MEJORAS SE HARIAN EN UNA VERSION 2.0?
