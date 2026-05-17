@@ -1,28 +1,27 @@
 # TC1-MIniproyecto-Hoja-de-Calculo
 
-Integrantes:
+- INTEGRANTES:
   -Rodrigo Rene Elias Ramirez
   -Sergio Alejandro Monge Moya
   
-Cómo ejecutar:
+- COMO EJECUTAR:
+  - Paso A: Clonar el repositorio
+      Primero, descargará el código a su máquina local.
+      Bash
+      git clone https://github.com/rodrigo803/TC1-MIniproyecto-Hoja-de-Calculo.git
 
-Paso A: Clonar el repositorio
-Primero, descargará el código a su máquina local.
-Bash
-git clone https://github.com/rodrigo803/TC1-MIniproyecto-Hoja-de-Calculo.git
+  - Paso B: Entrar a la carpeta del proyecto
+      Debe navegar hacia la raíz del proyecto, donde se encuentran el README.md y el main.lucia.
+      Bash
+      cd tu-repositorio-hoja-calculo
 
-Paso B: Entrar a la carpeta del proyecto
-Debe navegar hacia la raíz del proyecto, donde se encuentran el README.md y el main.lucia.
-Bash
-cd tu-repositorio-hoja-calculo
-
-Paso C: Compilar y Ejecutar
-Como tu punto de entrada está en la raíz, solo necesita indicarle al compilador (o al CLI) de Lucia que ejecute ese archivo. El compilador se encargará automáticamente de buscar los archivos referenciados en la carpeta src/ gracias a las importaciones.
-Bash
-lucia run main.lucia
+  - Paso C: Compilar y Ejecutar
+      Como tu punto de entrada está en la raíz, solo necesita indicarle al compilador (o al CLI) de Lucia que ejecute ese archivo. El compilador se encargará automáticamente de buscar los archivos referenciados en la            carpeta src/ gracias a las importaciones.
+      Bash
+      lucia run main.lucia
 
 
-Funcionalidades implementadas:
+FUNCIONALIDADES IMPLEMENTADAS:
 
 
 DIAGRAMA DE CLASES:
@@ -34,4 +33,4 @@ DIAGRAMA DE CASOS DE USO:
       <img width="448" height="464" alt="image" src="https://github.com/user-attachments/assets/6dab7b8a-b69b-4cd7-acbe-21791c0fd84a" />
 
 
-Qué mejoras harían en una versión 2.0?:
+¿QUE MEJORAS SE HARIAN EN UNA VERSION 2.0?
