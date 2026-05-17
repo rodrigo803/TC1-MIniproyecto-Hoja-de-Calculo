@@ -25,11 +25,13 @@
   - aqui van las fucionalidades implemetadas en el proyecto.
 
 - DIAGRAMA DE CLASES:
+
     <img width="587" height="537" alt="image" src="https://github.com/user-attachments/assets/afc3b6aa-32f6-42a1-a8d2-d8666ad24996" />
 
 
 
 - DIAGRAMA DE CASOS DE USO:
+
     <img width="448" height="464" alt="image" src="https://github.com/user-attachments/assets/6dab7b8a-b69b-4cd7-acbe-21791c0fd84a" />
 
 
