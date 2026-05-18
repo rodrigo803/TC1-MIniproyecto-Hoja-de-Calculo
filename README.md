@@ -23,7 +23,17 @@
 
 
 - FUNCIONALIDADES IMPLEMENTADAS:
-  - aqui van las fucionalidades implemetadas en el proyecto.
+  - El proyecto cuenta con un núcleo funcional robusto, diseñado bajo principios de programación modular y separación de responsabilidades. Hasta el momento, el sistema incluye:
+    - Arquitectura Modular: Separación estricta de la lógica de negocio, la interfaz de usuario y el motor de evaluación mediante módulos (`sistema`, `interfaz`, `evaluador`), manteniendo un punto de entrada limpio en           el archivo principal.
+    - Mapeo de Matrices en Memoria Lineal: Implementación de una cuadrícula de 10x10 simulada sobre arreglos unidimensionales de 100 posiciones, utilizando conversión matemática de coordenadas de plano cartesiano a              índices de lista.
+    - Interfaz Dinámica CLI (Command Line Interface): Menú interactivo controlado por estados.
+    - Renderizado en consola de la matriz con encabezados alfabéticos (A-J) y numéricos (1-10).
+    - Alineación y formateo de celdas utilizando métodos nativos de cadenas de texto para simular una tabla visual exacta.
+    - Doble Perspectiva de Datos: Mantenimiento de dos estados paralelos en memoria:
+    - Matriz de Fórmulas: Almacena el texto bruto o las expresiones ingresadas por el usuario.
+    - Matriz Normal: Muestra los valores ya evaluados y calculados.
+    - Motor Evaluador de Expresiones: Sistema de intercepción de datos que distingue entre valores estáticos (texto/números) y expresiones matemáticas al detectar el prefijo `=`.
+    - Operaciones Soportadas: Asignación de valores estáticos y cadenas de texto.
 
 - DIAGRAMA DE CLASES:
 
