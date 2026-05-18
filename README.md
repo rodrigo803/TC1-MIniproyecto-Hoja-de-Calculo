@@ -3,6 +3,7 @@
 - INTEGRANTES:
   - Rodrigo Rene Elias Ramirez
   - Sergio Alejandro Monge Moya
+  - Sergio Segura Badilla
   
 - COMO EJECUTAR:
   - Paso A: Clonar el repositorio
