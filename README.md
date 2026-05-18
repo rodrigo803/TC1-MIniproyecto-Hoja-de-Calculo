@@ -47,3 +47,8 @@
 
 
 - ¿QUE MEJORAS SE HARIAN EN UNA VERSION 2.0?
+  - Persistencia de Datos (Guardado y Carga): Implementar la capacidad de exportar el estado actual de los arreglos a archivos `.csv` o `.json`, permitiendo al usuario cerrar el programa y retomar su trabajo                   posteriormente.
+  - Detección de Referencias Circulares: Integrar un algoritmo en el módulo evaluador que prevenga bucles infinitos en caso de que dos celdas se referencien mutuamente (por ejemplo, que `A1` sea `=B1` y `B1` sea `=A1`).
+  - Soporte Multilenguaje o Multilibro: Escalar el arreglo para soportar una tercera dimensión que permita navegar entre diferentes "Pestañas" u hojas dentro del mismo libro de trabajo, tal como en el software comercial.
+  - Actualización Dinámica en Cascada: Optimizar el evaluador para que, al modificar una celda "origen", todas las celdas que dependan de ella se recalculen automáticamente sin necesidad de reingresar las fórmulas.
+  - Interfaz Gráfica de Usuario (GUI): Migrar de la interfaz de línea de comandos a una ventana interactiva gestionada por eventos de ratón, facilitando la selección de celdas y la navegación visual.
