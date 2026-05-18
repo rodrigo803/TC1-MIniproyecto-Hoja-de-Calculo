@@ -1,0 +1,14 @@
+// Archivo: src/evaluador.lucia
+
+func evaluarCelda(entrada: string, matriz: list<any>): string {
+    // Ingresa aqui las clases para las operaciones suma, resta, inversa
+    if (entrada != "") {
+        
+        if (entrada.starts_with("=")) {
+            
+            print("-> ¡Fórmula detectada por el evaluador!");
+            return "CALC..."; 
+        }
+    }
+    return entrada;
+}

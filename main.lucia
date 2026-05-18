@@ -1,59 +1,8 @@
 // Archivo: main.lucia
-import "src/interfaz";
-
-func ejecutarSistema(): void {
-    let matrizFormulas = [];
-    let matrizNormal = [];
-    
-    let i = 0;
-    while (i < 100) {
-        matrizFormulas.append(" ");
-        matrizNormal.append("0");
-        i = i + 1;
-    }
-    print("Matriz 10x10 lista en memoria.");
-    
-    let ejecutable = true;
-    let opcion = ""; 
-
-    while (ejecutable) {
-        mostrarMenu();
-        opcion = input("Elige una opción: "); 
-        
-        if (opcion == "1") {
-            print("--- ASIGNAR VALOR ---");
-            
-            let fila_str = input("Ingresa la fila (1 a 10): ");
-            let col_str = input("Ingresa la columna (1 a 10, 1=A, 2=B...): ");
-            let valor = input("Ingresa el valor o fórmula: ");
-            
-            // Convertimos el texto ingresado a números enteros
-            let fila = int(fila_str);
-            let col = int(col_str);
-            
-            // Calculamos el índice exacto en el arreglo (de 0 a 99)
-            let indice = (fila - 1) * 10 + (col - 1);
-            
-            // Guardamos el valor en ambas matrices por ahora
-            matrizFormulas[indice] = valor;
-            matrizNormal[indice] = valor; 
-            
-            print("¡Valor asignado correctamente en la matriz!");
-            
-        } else if (opcion == "2") {
-            mostrarMatriz(matrizFormulas, "MATRIZ DE FÓRMULAS");
-        } else if (opcion == "3") {
-            mostrarMatriz(matrizNormal, "MATRIZ NORMAL");            
-        } else if (opcion == "4") {
-            print("Cerrando la hoja de cálculo...");
-            ejecutable = false; 
-        } else {
-            print("Opción no válida.");
-        }
-    }
-}
+import "src/sistema";
 
 func main(): void {
+    // Sin prefijo, ya que 'import' lo inyecta globalmente
     ejecutarSistema();
 }
 
