@@ -41,7 +41,9 @@ func ejecutarSistema(): void {
             print("¡Valor asignado correctamente en la matriz!");
             
         } else if (opcion == "2") {
-            print("Opción 2 en construcción...");
+            mostrarMatriz(matrizFormulas, "MATRIZ DE FÓRMULAS");
+        } else if (opcion == "3") {
+            mostrarMatriz(matrizNormal, "MATRIZ NORMAL");            
         } else if (opcion == "4") {
             print("Cerrando la hoja de cálculo...");
             ejecutable = false; 

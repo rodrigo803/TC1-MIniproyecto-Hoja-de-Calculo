@@ -7,3 +7,37 @@ func mostrarMenu(): void {
     print("3. Ver la matriz normal");
     print("4. Salir");
 }
+
+// Muestra la matriz 10x10 en pantalla 
+
+func mostrarMatriz(matriz: list<any>, titulo: string): void {
+    print("");
+    print("--- " + titulo + " ---");
+    
+    // Constrye el encabezado con las letras
+    let letras: list<string> = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    let encabezado: string = "    "; 
+    let c: int = 0;
+    while (c < 10) {
+        encabezado = encabezado + letras[c].pad_left(6);
+        c = c + 1;
+    }
+    print(encabezado);
+    
+    // Construir e imprimir cada fila
+    let fila: int = 0;
+    while (fila < 10) {
+        // Empezamos con el número de fila, alineado a la derecha
+        let linea: string = str(fila + 1).pad_left(3) + " ";
+        
+        let col: int = 0;
+        while (col < 10) {
+            let indice: int = fila * 10 + col;
+            linea = linea + str(matriz[indice]).pad_left(6);
+            col = col + 1;
+        }
+        print(linea);
+        fila = fila + 1;
+    }
+    print("");
+}
