@@ -1,49 +1,39 @@
 // Archivo: src/sistema.lucia
-import "interfaz";
-import "evaluador";
+import "interfaz.lucia";
+import "evaluador.lucia";
 
 func ejecutarSistema(): void {
-    let matrizFormulas = [];
-    let matrizNormal = [];
-    
-    let i = 0;
-    while (i < 100) {
-        matrizFormulas.append(" ");
-        matrizNormal.append("0");
-        i = i + 1;
-    }
-    print("Matriz 10x10 lista en memoria.");
+    // 1. Instanciamos tu matriz orientada a objetos
+    let hoja = Matriz(); 
+    print("Matriz Orientada a Objetos lista en memoria.");
     
     let ejecutable = true;
     let opcion = ""; 
 
     while (ejecutable) {
-        // Directo, sin prefijos
         mostrarMenu();
         opcion = input("Elige una opción: "); 
         
         if (opcion == "1") {
             print("\n--- ASIGNAR VALOR ---");
-            let fila_str = input("Ingresa la fila (1 a 10): ");
-            let col_str = input("Ingresa la columna (1 a 10, 1=A, 2=B...): ");
+            
+            // 2. Aprovechamos tu nueva lógica para pedir la celda directa (ej. A1)
+            let coord = input("Ingresa la celda (ej. A1, C4, J10): ");
             let valor = input("Ingresa el valor o fórmula: ");
             
-            let fila = int(fila_str);
-            let col = int(col_str);
-            let indice = (fila - 1) * 10 + (col - 1);
+            // 3. Tu clase hace todo el trabajo de guardado y cálculo
+            hoja.registrarValorEnCelda(coord, valor);
             
-            matrizFormulas[indice] = valor;
-            
-            // Directo a la función del evaluador
-            matrizNormal[indice] = evaluarCelda(valor, matrizNormal); 
-            
-            print("¡Valor asignado correctamente!");
+            print("¡Valor procesado correctamente!");
             
         } else if (opcion == "2") {
-            // Directo a la función de la interfaz
-            mostrarMatriz(matrizFormulas, "MATRIZ DE FÓRMULAS");
+            // Llamamos a tu método de impresión
+            hoja.mostrarMatrizFormulas();
+            
         } else if (opcion == "3") {
-            mostrarMatriz(matrizNormal, "MATRIZ NORMAL");            
+            // Llamamos a tu método de impresión
+            hoja.mostrarMatrizValores();            
+            
         } else if (opcion == "4") {
             print("Cerrando la hoja de cálculo...");
             ejecutable = false; 

@@ -1,0 +1,17 @@
+class Celda {
+    let formula: string;      // Almacena lo que digito el usuario (ej: "=sumatoria(A1:A5)")
+    let valorCalculado: string; // Almacena el resultado final evaluado tras el proceso (ej: "450")
+
+    constructor() {
+        this.formula = "";
+        this.valorCalculado = "";
+    }
+
+    func establecerFormula(f: string): void {
+        this.formula = f;
+    }
+
+    func establecerValor(v: string): void {
+        this.valorCalculado = v;
+    }
+}

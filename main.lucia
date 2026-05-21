@@ -1,8 +1,7 @@
 // Archivo: main.lucia
-import "src/sistema";
+import "src/sistema.lucia";
 
 func main(): void {
-    // Sin prefijo, ya que 'import' lo inyecta globalmente
     ejecutarSistema();
 }
 

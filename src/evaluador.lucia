@@ -1,14 +1,231 @@
 // Archivo: src/evaluador.lucia
+import "Celda.lucia";
 
-func evaluarCelda(entrada: string, matriz: list<any>): string {
-    // Ingresa aqui las clases para las operaciones suma, resta, inversa
-    if (entrada != "") {
+class Matriz {
+    let tabla: list<list<Celda>>; 
+    let columnasLetras: list<string>;
+
+    constructor() {
+        this.columnasLetras = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+        this.tabla = [];
         
-        if (entrada.starts_with("=")) {
-            
-            print("-> ¡Fórmula detectada por el evaluador!");
-            return "CALC..."; 
+        for (let i: int = 0; i < 10; i++) {
+            let filaNueva: list<Celda> = [];
+            for (let j: int = 0; j < 10; j++) {
+                filaNueva.append(Celda());
+            }
+            this.tabla.append(filaNueva);
         }
     }
-    return entrada;
+
+    // Traduce coordenadas como "B3" a índices numéricos independientes
+    func mapearCoordenada(coor: string): list<int> {
+        let coorLimpia: string = coor.upper().ltrim().rtrim();
+        
+        let letra: string = coorLimpia.substring(0, 1); 
+        
+        let numeroStr: string = "";
+        for (let k: int = 1; k < len(coorLimpia); k++) {
+            numeroStr = numeroStr + coorLimpia.substring(k, k + 1);
+        }
+        
+        let colIdx: int = -1;
+        for (let j: int = 0; j < 10; j++) {
+            if (this.columnasLetras[j] == letra) {
+                colIdx = j;
+            }
+        }
+        
+        let filIdx: int = int(numeroStr) - 1; 
+        let resultado: list<int> = [filIdx, colIdx];
+        return resultado;
+    }
+
+    func esValorNumerico(texto: string): bool {
+        try {
+            let n: float = float(texto);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    func resolverOperando(operando: string): float {
+        if (this.esValorNumerico(operando)) {
+            return float(operando);
+        } else {
+            let coords: list<int> = this.mapearCoordenada(operando);
+            
+            let filaObjetivo: list<Celda> = this.tabla[coords[0]];
+            let celdaObj: Celda = filaObjetivo[coords[1]];
+            
+            return float(celdaObj.valorCalculado);
+        }
+    }
+
+    func evaluarMatriz(): void {
+        for (let i: int = 0; i < 10; i++) {
+            let filaActual: list<Celda> = this.tabla[i];
+
+            for (let j: int = 0; j < 10; j++) {
+                let celda: Celda = filaActual[j];
+                let formula: string = celda.formula;
+
+                if (formula == "") {
+                    celda.establecerValor("");
+                    continue;
+                }
+
+                if (formula.substring(0, 1) == "=") {
+                    let partesFormula: list<string> = formula.split("=");
+                    let contenidoFormula: string = partesFormula[1];
+
+                    // 1. EVALUAR FUNCIÓN REVERSAR: =Reversar(A1)
+                    if (contenidoFormula.lower().contains("reversar")) {
+                        let partes: list<string> = contenidoFormula.split("(");
+                        let subPartes: list<string> = partes[1].split(")");
+                        let objetivo: string = subPartes[0];
+                        
+                        let coordsObj: list<int> = this.mapearCoordenada(objetivo);
+                        
+                        let fObj: list<Celda> = this.tabla[coordsObj[0]];
+                        let celdaObjetivo: Celda = fObj[coordsObj[1]];
+                        let valorOriginal: string = celdaObjetivo.valorCalculado;
+                        
+                        let valorInvertido: string = "";
+                        for (let k: int = len(valorOriginal) - 1; k >= 0; k--) {
+                            valorInvertido = valorInvertido + valorOriginal.substring(k, k + 1);
+                        }
+                        celda.establecerValor(valorInvertido);
+                    }
+                    
+                    // 2. EVALUAR FUNCIONES DE RANGO: =sumatoria(A1:A5) o =promedio(A1:A5)
+                    else if (contenidoFormula.lower().contains("sumatoria") || contenidoFormula.lower().contains("promedio")) {
+                        let esPromedio: bool = contenidoFormula.lower().contains("promedio");
+                        let partes: list<string> = contenidoFormula.split("(");
+                        let subPartes: list<string> = partes[1].split(")");
+                        let rango: list<string> = subPartes[0].split(":");
+                        
+                        let inicio: list<int> = this.mapearCoordenada(rango[0]);
+                        let fin: list<int> = this.mapearCoordenada(rango[1]);
+                        
+                        let sumaRango: float = 0.0;
+                        let contadorCeldas: int = 0;
+
+                        for (let rF: int = inicio[0]; rF <= fin[0]; rF++) {
+                            let filaRango: list<Celda> = this.tabla[rF];
+                            
+                            for (let rC: int = inicio[1]; rC <= fin[1]; rC++) {
+                                let cTarget: Celda = filaRango[rC];
+                                if (this.esValorNumerico(cTarget.valorCalculado)) {
+                                    sumaRango += float(cTarget.valorCalculado);
+                                }
+                                contadorCeldas = contadorCeldas + 1;
+                            }
+                        }
+
+                        let resultadoFinal: float = 0.0;
+                        if (esPromedio) {
+                            resultadoFinal = sumaRango / float(contadorCeldas);
+                        } else {
+                            resultadoFinal = sumaRango;
+                        }
+                        celda.establecerValor(str(resultadoFinal));
+                    }
+                    
+                    // 3. EVALUAR OPERACIONES ARITMÉTICAS BÁSICAS
+                    else {
+                        try {
+                            if (contenidoFormula.contains("+")) {
+                                let ops: list<string> = contenidoFormula.split("+");
+                                celda.establecerValor(str(this.resolverOperando(ops[0]) + this.resolverOperando(ops[1])));
+                            } else if (contenidoFormula.contains("-")) {
+                                let ops: list<string> = contenidoFormula.split("-");
+                                celda.establecerValor(str(this.resolverOperando(ops[0]) - this.resolverOperando(ops[1])));
+                            } else if (contenidoFormula.contains("*")) {
+                                let ops: list<string> = contenidoFormula.split("*");
+                                celda.establecerValor(str(this.resolverOperando(ops[0]) * this.resolverOperando(ops[1])));
+                            } else if (contenidoFormula.contains("/")) {
+                                let ops: list<string> = contenidoFormula.split("/");
+                                celda.establecerValor(str(this.resolverOperando(ops[0]) / this.resolverOperando(ops[1])));
+                            } else {
+                                celda.establecerValor(str(this.resolverOperando(contenidoFormula)));
+                            }
+                        } catch (err) {
+                            celda.establecerValor("ERROR");
+                        }
+                    }
+                } else {
+                    celda.establecerValor(formula);
+                }
+            }
+        }
+    }
+
+    func registrarValorEnCelda(coor: string, expresion: string): void {
+        let indices: list<int> = this.mapearCoordenada(coor);
+        let filaMod: list<Celda> = this.tabla[indices[0]]; 
+        let celdaModificar: Celda = filaMod[indices[1]];
+        
+        celdaModificar.establecerFormula(expresion);
+        this.evaluarMatriz(); 
+    }
+
+    func mostrarMatrizFormulas(): void {
+        print("\n--- MATRIZ DE FORMULAS ---");
+        // Dejamos el espacio inicial para los números de fila (ej. "10 |")
+        let cabecera: string = "    "; 
+        for (let k: int = 0; k < 10; k++) { 
+            // Cada letra de columna tomará exactamente 12 espacios
+            cabecera = cabecera + this.columnasLetras[k].pad_left(12); 
+        }
+        print(cabecera);
+
+        for (let i: int = 0; i < 10; i++) {
+            let numFila: int = i + 1;
+            // Acomodamos el número de fila para que el palito "|" siempre quede alineado
+            let filaTxt: string = str(numFila).pad_left(2) + " | ";
+
+            let filaF: list<Celda> = this.tabla[i]; 
+            for (let j: int = 0; j < 10; j++) {
+                let celda: Celda = filaF[j];
+                let fTexto: string = ".";
+                
+                if (celda.formula != "") {
+                    fTexto = celda.formula;
+                }
+                
+                // Forzamos el texto de la celda a medir 12 espacios
+                filaTxt = filaTxt + fTexto.pad_left(12);
+            }
+            print(filaTxt);
+        }
+    }
+
+    func mostrarMatrizValores(): void {
+        print("\n--- MATRIZ DE VALORES CALCULADOS ---");
+        let cabecera: string = "    ";
+        for (let k: int = 0; k < 10; k++) { 
+            cabecera = cabecera + this.columnasLetras[k].pad_left(12); 
+        }
+        print(cabecera);
+
+        for (let i: int = 0; i < 10; i++) {
+            let numFila: int = i + 1;
+            let filaTxt: string = str(numFila).pad_left(2) + " | ";
+
+            let filaV: list<Celda> = this.tabla[i]; 
+            for (let j: int = 0; j < 10; j++) {
+                let celda: Celda = filaV[j];
+                let vTexto: string = ".";
+                
+                if (celda.valorCalculado != "") {
+                    vTexto = celda.valorCalculado;
+                }
+                
+                filaTxt = filaTxt + vTexto.pad_left(12);
+            }
+            print(filaTxt);
+        }
+    }
 }
